@@ -89,7 +89,7 @@ bool Sen0395::SendCommand(const std::string& cmd)
     }
     else
     {
-        printf("CMD FAILED: %d %s\n", sz, buf);
+        printf("CMD FAILED:\n%s\n", buf);
         free(buf);
         return false;
     }

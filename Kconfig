@@ -57,6 +57,5 @@ menu "SEN0395 configuration"
     config SEN0395_AUTOSTART
         bool "Start sensor immediately on power-on"
         default "y"
-    
 
 endmenu
