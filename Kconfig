@@ -1,0 +1,62 @@
+menu "SEN0395 configuration"
+
+    config SEN0395_UART_PORT_NUM
+        int "UART port number"
+        range 0 2 if IDF_TARGET_ESP32   || IDF_TARGET_ESP32S3
+        range 0 1 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32C3
+        default 2 if IDF_TARGET_ESP32   || IDF_TARGET_ESP32S3
+        default 1 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32C3
+        help
+            UART communication port number for the TANKLEVEL.
+            See UART documentation for available port numbers.
+
+    config SEN0395_UART_BUF_SIZE
+        int "UART buffer size"
+        range 2048 8192
+        default 2048
+        help
+            UART buffer size
+
+    config SEN0395_UART_BAUD
+        int "UART communication speed"
+        range 1200 115200
+        default 115200
+        help
+            UART communication speed for SEN0395
+
+    config SEN0395_UART_RXD_PIN
+        int "UART RXD pin number"
+        range 0 34 if IDF_TARGET_ESP32
+        range 0 46 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+        range 0 19 if IDF_TARGET_ESP32C3
+        default 5
+        help
+            GPIO number for UART RX pin. See UART documentation for more information
+            about available pin numbers for UART.
+
+    config SEN0395_UART_TXD_PIN
+        int "UART TXD pin number"
+        range 0 34 if IDF_TARGET_ESP32
+        range 0 46 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+        range 0 19 if IDF_TARGET_ESP32C3
+        default 4
+        help
+            GPIO number for UART TX pin. See UART documentation for more information
+            about available pin numbers for UART.
+    
+    config SEN0395_DETECT_DELAY
+        int "When the target is detected, the delay time for output of sensing results, in 25ms increments"
+        range 0 65536
+        default 100
+
+    config SEN0395_LEAVE_DELAY
+        int "After the target disappears, the delay time for output of sensing results, in 25ms increments"
+        range 0 65536
+        default 400
+
+    config SEN0395_AUTOSTART
+        bool "Start sensor immediately on power-on"
+        default "y"
+    
+
+endmenu
